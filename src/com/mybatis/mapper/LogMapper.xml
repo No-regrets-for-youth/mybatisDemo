@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.LogMapper">
+	<!-- 插入转账记录 -->
+	<insert id="insLog" parameterType="Log">
+		insert into log values(default,#{accOut},#{accIn},#{money})
+	</insert>
+	<!-- 转账日志表分页数据 -->
+	<select id="selByPage" parameterType="map" resultType="Log">
+		select * from log limit #{pageStart},#{pageSize}
+	</select>
+	<!-- 日志表的总条数 -->
+	<select id="selCount" resultType="long">
+		select count(1) from log
+	</select>
+</mapper>
